@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<main>
+<h1>Cowrie dashboard</h1>
+<p class="sub" id="meta">Loading...</p>
+<div class="stats" id="stats"></div>
+<div class="panel"><h2>Connections per day</h2><div class="scroll" id="chart" style="max-height:none"></div></div>
+<div class="grid">
+<div class="panel"><h2>Attack origins</h2>
+<div id="map" class="worldmap"><p class="note">Loading map...</p></div>
+<div class="legend" aria-hidden="true"><span>Fewer sessions</span><i></i><span>More sessions</span></div>
+<p class="note" id="geonote"></p></div>
+<div class="panel"><h2>Top countries</h2><div id="geolist"></div></div>
+</div>
+<div class="grid">
+<div class="panel"><h2>Source IP addresses</h2>
+<div class="tools"><input id="q" placeholder="Filter by IP, e.g. 195.178." aria-label="Filter by IP"><button id="copy">Copy IP list</button></div>
+<div class="scroll"><table><thead id="thead"></thead><tbody id="tbody"></tbody></table></div>
+<p class="note" id="tnote"></p></div>
+<div><div class="panel"><h2>Top usernames</h2><div id="users"></div></div>
+<div class="panel"><h2>Top passwords</h2><div id="pw"></div></div>
+<div class="panel"><h2>Top commands</h2><div id="topcmds"></div></div></div>
+</div>
+<div class="panel"><h2>Recent commands and downloads</h2>
+<div class="scroll"><table class="feed"><thead><tr><th>Time (UTC)</th><th>IP address</th><th>Type</th><th>Detail</th></tr></thead><tbody id="feed"></tbody></table></div>
+<p class="note" id="fnote"></p></div>
+<p class="note">IP geolocation by <a href="https://db-ip.com">DB-IP</a>. World map from <a href="https://www.npmjs.com/package/@svg-maps/world">@svg-maps/world</a> (CC BY 4.0).</p>
+</main>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='dashboard.js') }}" defer></script>
+{% endblock %}

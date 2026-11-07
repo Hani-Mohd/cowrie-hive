@@ -1,0 +1,18 @@
+# /etc/systemd/system/cowrie-dashboard.service
+[Unit]
+Description=Cowrie dashboard (gunicorn)
+After=network.target
+
+[Service]
+User=cowrie
+Group=cowrie
+WorkingDirectory=/opt/cowrie-dashboard
+EnvironmentFile=/etc/cowrie-dashboard.env
+# One worker on purpose: rate-limit counters live in process memory
+ExecStart=/opt/cowrie-dashboard/venv/bin/gunicorn app:app --bind 127.0.0.1:8080 --workers 1 --threads 4
+Restart=on-failure
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

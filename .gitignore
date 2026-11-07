@@ -1,0 +1,22 @@
+# secrets and local config
+.env
+*.env
+!.env.example
+
+# data that must never be published
+*.db
+*.mmdb
+*.log
+cowrie.json*
+users.db
+
+# python
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# local leftovers
+*.bak
+*.bak2
+certbot/

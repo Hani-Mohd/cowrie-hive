@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Sign up{% endblock %}
+{% block body_class %}auth-page{% endblock %}
+{% block content %}
+<main class="auth">
+  <section class="auth-card">
+    <h1>Join the hive</h1>
+    <p class="sub">Invite-only. You need a valid invite code.</p>
+    {% if error %}<div class="alert" role="alert">{{ error }}</div>{% endif %}
+    <form method="post" autocomplete="off">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <label for="invite">Invite code</label>
+      <input id="invite" name="invite" required autofocus autocomplete="off">
+      <label for="username">Username</label>
+      <input id="username" name="username" required autocomplete="username"
+             pattern="[A-Za-z0-9_.\-]{3,32}" title="3-32 characters: letters, digits, _ . -">
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" required minlength="12" autocomplete="new-password">
+      <label for="confirm">Confirm password</label>
+      <input id="confirm" name="confirm" type="password" required minlength="12" autocomplete="new-password">
+      <p class="hint">At least 12 characters.</p>
+      <button class="btn" type="submit">Create account</button>
+    </form>
+    <p class="alt">Already registered? <a href="{{ url_for('login') }}">Log in</a></p>
+  </section>
+</main>
+{% endblock %}

@@ -1,0 +1,31 @@
+:root{--bg:#eef1f4;--panel:#fff;--ink:#17212b;--mute:#5d6b7a;--line:#d5dce3;--acc:#2457d6;--warn:#b3261e;color-scheme:light}
+@media(prefers-color-scheme:dark){:root{--bg:#141a21;--panel:#1c242d;--ink:#e6ebf0;--mute:#93a1b0;--line:#2e3945;--acc:#6f97ff;--warn:#ff8a80;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,sans-serif}
+main{max-width:1180px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:15px;margin:0 0 10px}
+.sub,.note{color:var(--mute);font-size:13px}.sub{margin:0 0 16px}
+.stats{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
+.stat{flex:1 1 150px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.stat b{display:block;font-size:26px;font-weight:600}.stat span{color:var(--mute);font-size:13px}
+.grid{display:grid;grid-template-columns:2fr 1fr;gap:16px}
+@media(max-width:860px){.grid{grid-template-columns:1fr}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px;min-width:0;margin-bottom:16px}
+.grid .panel{margin:0 0 16px}
+.scroll{overflow:auto;max-height:560px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:right;padding:6px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{position:sticky;top:0;background:var(--panel);cursor:pointer;color:var(--mute)}
+.mono,td.ip{font-family:ui-monospace,Menlo,monospace}
+.bar{display:flex;align-items:center;gap:8px;margin:5px 0;font-size:13px}
+.bar i{display:block;height:8px;background:var(--acc);border-radius:2px}
+.bar em{font-style:normal;flex:0 0 118px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar span{color:var(--mute);margin-left:auto}
+.tools{display:flex;gap:8px;margin-bottom:10px}
+.tools input{flex:1;font:inherit;padding:7px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)}
+button{font:inherit;background:var(--acc);color:#fff;border:0;border-radius:6px;padding:8px 14px;cursor:pointer}
+.ok{color:var(--warn);font-weight:600}
+td.ip{cursor:pointer}
+.feed th,.feed td{text-align:left}
+.feed td:last-child{white-space:normal;word-break:break-all;font-family:ui-monospace,Menlo,monospace}

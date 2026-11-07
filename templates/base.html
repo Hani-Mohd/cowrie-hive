@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Dashboard{% endblock %} · Cowrie Honeypot</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='theme.css') }}">
+</head>
+<body class="{% block body_class %}{% endblock %}">
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="{{ url_for('index') }}">
+      <svg class="hex" viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
+        <polygon points="16,2 28,9 28,23 16,30 4,23 4,9" fill="#f5a623" stroke="#ffc83d" stroke-width="2"/>
+        <polygon points="16,9 22,12.5 22,19.5 16,23 10,19.5 10,12.5" fill="#2e1d0c"/>
+      </svg>
+      <span>Cowrie <b>Honeypot</b></span>
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      {% if session.get('user_id') %}
+        <a href="{{ url_for('index') }}" class="{{ 'active' if request.endpoint == 'index' }}">Dashboard</a>
+        <form method="post" action="{{ url_for('logout') }}" class="logout">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <button class="btn ghost" type="submit">Log out</button>
+        </form>
+      {% else %}
+        <a href="{{ url_for('login') }}" class="{{ 'active' if request.endpoint == 'login' }}">Login</a>
+        {% if signup_enabled %}
+          <a href="{{ url_for('signup') }}" class="{{ 'active' if request.endpoint == 'signup' }}">Sign up</a>
+        {% endif %}
+      {% endif %}
+    </nav>
+  </div>
+</header>
+{% block content %}{% endblock %}
+{% block scripts %}{% endblock %}
+</body></html>
